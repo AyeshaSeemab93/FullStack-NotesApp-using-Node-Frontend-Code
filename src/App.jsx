@@ -1,17 +1,15 @@
 import { useState, useEffect} from 'react'
 import Note from './components/Note'
 import Notification from './components/Notification'
-import noteService from './services/notes'
 import Footer from './components/Footer'
-import './index.css'
+import noteService from './services/notes'
+// import style from './index.css?inline'
 
 function App(){
-   const [notes, setNote] = useState([])
-  // const [notes, setNote] = useState(props.notes)
+  const [notes, setNote] = useState([])
   const[showAll, setShowAll] = useState(true)
   const[text, setText] = useState('Add new Note')
-
-  const [errorMessage, setErrorMessage] = useState('Notification messages appear here!')
+  const [errorMessage, setErrorMessage] = useState(null)
 
   //getting data from server (http get USING AXIOUS)
       useEffect(()=>{
@@ -52,9 +50,6 @@ function AddNote(){
    setErrorMessage(null)
   }, 3000)
 
-
-
-
     })
 }
 
@@ -74,7 +69,6 @@ function toggleImportanceOf(id){
         ))
     })
     .catch(error =>{
-      //earlier was alert('the note...')
      setErrorMessage(`The note '${note.content}' was already removed from server`)
      //remove message after 5 sec
      setTimeout(()=>{
