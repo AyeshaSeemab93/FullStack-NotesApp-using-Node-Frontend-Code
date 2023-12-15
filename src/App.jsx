@@ -54,23 +54,21 @@ function AddNote(){
 }
 
 function toggleImportanceOf(id){
-    const note = notes.find(n => {n.id === id
-    console.log("change note of this id")})
-    //creating new object of the note bec can not change directly in the state
+    const note = notes.find(n => n.id === id)
+    console.log('Change note of this id: ', note.id);
+      //creating new object of the note bec can not change directly in the state
     const changedNote = {...note, important: !note.important}
-    
-    //replace the note in the notes in server
-    // axios.put(url, changedNote)
+    //replace the note in the notes in server //axios.put(url, changedNote)
     noteService
     .update(id, changedNote)
     .then(returnedNote=>{
-      //now set the note in state also from server data
-        setNote(notes.map(note =>
-          note.id !== id ? note : returnedNote
-        ))
-    })
+      //now update the note in state also from server data
+      console.log("changing note importance in state")
+        setNote(notes.map(note => note.id !== id ? note : returnedNote))
+      })
     .catch(error =>{
-     setErrorMessage(`The note '${note.content}' was already removed from server`)
+      console.error(error);
+     setErrorMessage(`Note '${note.content}' was already removed from server`)
      //remove message after 5 sec
      setTimeout(()=>{
       setErrorMessage(null)
@@ -79,6 +77,25 @@ function toggleImportanceOf(id){
        setNote(notes.filter(n =>n.id !== id))
     })
  }
+
+// const toggleImportanceOf = id => {
+//   const note = notes.find(n => n.id === id)
+//   const changedNote = { ...note, important: !note.important }
+
+//   noteService
+//     .update(id, changedNote).then(returnedNote => {
+//       setNote(notes.map(note => note.id !== id ? note : returnedNote))
+//     })
+//     .catch(error => {
+//       setErrorMessage(
+//         `Note '${note.content}' was already removed from server`
+//       )
+//       setTimeout(() => {
+//         setErrorMessage(null)
+//       }, 5000)
+//       setNote(notes.filter(n => n.id !== id))
+//     })
+// }
 
 function ChangeInput(event){
   setText(event.target.value)
