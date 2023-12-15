@@ -2,26 +2,26 @@
   "notes": [
     {
       "id": 1,
-      "content": "frontend db.jon.HTML is easy",
+      "content": "HTML is easy",
       "important": false
     },
     {
       "id": 2,
-      "content": "frontend db.jon.Browser can execute only JavaScript",
+      "content": "Browser can execute only JavaScript",
       "important": true
     },
     {
       "id": 3,
-      "content": "frontend db.jon.GET and POST are the most important methods of HTTP protocol",
+      "content": "GET and POST are the most important methods of HTTP protocol",
       "important": true
     },
     {
-      "content": "frontend db.jon.this is new to me",
+      "content": "this is new to me",
       "important": false,
       "id": 4
     },
     {
-      "content": "frontend db.jon.Add new Note",
+      "content": "Add new Note",
       "important": false,
       "id": 5
     },

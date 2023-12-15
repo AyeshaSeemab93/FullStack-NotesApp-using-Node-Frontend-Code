@@ -8,7 +8,7 @@ import noteService from './services/notes'
 function App(){
   const [notes, setNote] = useState([])
   const[showAll, setShowAll] = useState(true)
-  const[text, setText] = useState('Add new Note')
+  const[text, setText] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
 
   //getting data from server (http get USING AXIOUS)
@@ -54,7 +54,8 @@ function AddNote(){
 }
 
 function toggleImportanceOf(id){
-    const note = notes.find(n => n.id === id)
+    const note = notes.find(n => {n.id === id
+    console.log("change note of this id")})
     //creating new object of the note bec can not change directly in the state
     const changedNote = {...note, important: !note.important}
     
@@ -75,7 +76,7 @@ function toggleImportanceOf(id){
       setErrorMessage(null)
      }, 5000)
       //Set the state again(delete handcoded note) filter method.it give new array with all ids execept this id
-    setNote(notes.filter(n =>n.id !== id))
+       setNote(notes.filter(n =>n.id !== id))
     })
  }
 
